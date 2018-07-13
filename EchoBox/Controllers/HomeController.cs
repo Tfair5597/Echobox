@@ -26,5 +26,11 @@ namespace EchoBox.Controllers
 
             return View();
         }
+
+        public ActionResult Signup()
+        {
+            ViewBag.Message = "Sign up here.";
+            return View();
+        }
     }
 }
