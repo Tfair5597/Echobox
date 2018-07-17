@@ -15,7 +15,9 @@ namespace EchoBox.Models
         public string GenreName { get; set; } //name of genre, such as Rock, Pop, Metal
 
         [Required][Display(Name="Description")]
-        public string GenreDescription { get; set; } //description of genre, such as its' characteristics or common instruments.
+        public string GenreDescription { get; set; }
+
+        public string Instruments { get; set; } // common instruments in the genre. E.g. rock has guitar, bass, vocals.
 
         [Required][Display(Name ="Sub Genre")]
         public bool isSubGenre { get; set; }
