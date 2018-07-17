@@ -27,17 +27,12 @@ namespace EchoBox.Models
         [Display(Name = "Birthdate")]
         public DateTime DateOfBirth { get; set; }
 
-        [Required]
-        [Display(Name = "Favorite genre")]
-        public string FavGenre1 { get; set; }
+        //[Required]
+        //[Display(Name = "Favorites")]
 
-        [Display(Name = "Favorite Genre 2")]
-        public string FavGenre2 { get; set; }
+        public virtual List<Genre> Favorites { get; set; }
+        
 
-        [Display(Name = "Favorite Genre 3")]
-        public string FavGenre3 { get; set; }
-
-        [Display(Name = "Favorite Genre 4")]
-        public string FavGenre4 { get; set; }
+        
     }
 }
