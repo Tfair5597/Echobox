@@ -1,0 +1,51 @@
+﻿@model IEnumerable<EchoBox.Models.Genre>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GenreName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenreDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instruments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isSubGenre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenreName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenreDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Instruments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isSubGenre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.GenreID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GenreID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GenreID })
+        </td>
+    </tr>
+}
+
+</table>
