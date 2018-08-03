@@ -8,16 +8,17 @@ using System.Web;
 using System.Web.Mvc;
 using EchoBox.Models;
 
+
 namespace EchoBox.Controllers
 {
     public class UsersController : Controller
     {
-        private EchoBox db = new EchoBox();
+        private EchoBoxDb echoDb = new EchoBoxDb();
 
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(echoDb.Users.ToList());
         }
 
         // GET: Users/Details/5
@@ -27,7 +28,7 @@ namespace EchoBox.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = echoDb.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -50,8 +51,8 @@ namespace EchoBox.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
+                echoDb.Users.Add(user);
+                echoDb.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +66,7 @@ namespace EchoBox.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = echoDb.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -82,8 +83,8 @@ namespace EchoBox.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                echoDb.Entry(user).State = EntityState.Modified;
+                echoDb.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -96,7 +97,7 @@ namespace EchoBox.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = echoDb.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -109,9 +110,9 @@ namespace EchoBox.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            User user = echoDb.Users.Find(id);
+            echoDb.Users.Remove(user);
+            echoDb.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -119,7 +120,7 @@ namespace EchoBox.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                echoDb.Dispose();
             }
             base.Dispose(disposing);
         }

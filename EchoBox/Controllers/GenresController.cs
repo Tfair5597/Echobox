@@ -12,12 +12,12 @@ namespace EchoBox.Controllers
 {
     public class GenresController : Controller
     {
-        private EchoBox db = new EchoBox();
+        private EchoBoxDb echoDb = new EchoBoxDb();
 
         // GET: Genres
         public ActionResult Index()
         {
-            return View(db.Genres.ToList());
+            return View(echoDb.Genres.ToList());
         }
 
         // GET: Genres/Details/5
@@ -27,7 +27,7 @@ namespace EchoBox.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genres.Find(id);
+            Genre genre = echoDb.Genres.Find(id);
             if (genre == null)
             {
                 return HttpNotFound();
@@ -50,8 +50,8 @@ namespace EchoBox.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Genres.Add(genre);
-                db.SaveChanges();
+                echoDb.Genres.Add(genre);
+                echoDb.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +65,7 @@ namespace EchoBox.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genres.Find(id);
+            Genre genre = echoDb.Genres.Find(id);
             if (genre == null)
             {
                 return HttpNotFound();
@@ -82,8 +82,8 @@ namespace EchoBox.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(genre).State = EntityState.Modified;
-                db.SaveChanges();
+                echoDb.Entry(genre).State = EntityState.Modified;
+                echoDb.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(genre);
@@ -96,7 +96,7 @@ namespace EchoBox.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genres.Find(id);
+            Genre genre = echoDb.Genres.Find(id);
             if (genre == null)
             {
                 return HttpNotFound();
@@ -109,9 +109,9 @@ namespace EchoBox.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Genre genre = db.Genres.Find(id);
-            db.Genres.Remove(genre);
-            db.SaveChanges();
+            Genre genre = echoDb.Genres.Find(id);
+            echoDb.Genres.Remove(genre);
+            echoDb.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -119,7 +119,7 @@ namespace EchoBox.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                echoDb.Dispose();
             }
             base.Dispose(disposing);
         }
