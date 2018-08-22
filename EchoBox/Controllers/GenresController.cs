@@ -12,7 +12,7 @@ namespace EchoBox.Controllers
 {
     public class GenresController : Controller
     {
-        private EchoBox db = new EchoBox();
+        private EchoDb db = new EchoDb();
 
         // GET: Genres
         public ActionResult Index()

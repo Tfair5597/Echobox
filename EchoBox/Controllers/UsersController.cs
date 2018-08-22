@@ -12,7 +12,7 @@ namespace EchoBox.Controllers
 {
     public class UsersController : Controller
     {
-        private EchoBox db = new EchoBox();
+        private EchoDb db = new EchoDb();
 
         // GET: Users
         public ActionResult Index()

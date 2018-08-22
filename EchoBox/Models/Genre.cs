@@ -22,10 +22,6 @@ namespace EchoBox.Models
        "rock-n-roll","rockabilly","romance","sad","salsa","samba","sertanejo","show-tunes","singer-songwriter","ska","sleep","songwriter","soul","soundtracks",
        "spanish","study","summer","swedish","synth-pop","tango","techno","trance","trip-hop","turkish","work-out","world-music"};
 
-
-
-
-
         [Key]
         public int GenreID { get; set; }
 
