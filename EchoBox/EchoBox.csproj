@@ -166,6 +166,10 @@
     <Compile Include="Migrations\201807201655223_Migration1.Designer.cs">
       <DependentUpon>201807201655223_Migration1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808221953431_GenreMigrationTwo.cs" />
+    <Compile Include="Migrations\201808221953431_GenreMigrationTwo.Designer.cs">
+      <DependentUpon>201808221953431_GenreMigrationTwo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EchoBoxContext.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -278,6 +282,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807201655223_Migration1.resx">
       <DependentUpon>201807201655223_Migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221953431_GenreMigrationTwo.resx">
+      <DependentUpon>201808221953431_GenreMigrationTwo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

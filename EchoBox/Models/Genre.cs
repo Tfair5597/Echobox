@@ -25,8 +25,6 @@ namespace EchoBox.Models
 
         public string Instruments { get; set; } // common instruments in the genre. E.g. rock has guitar, bass, vocals.
 
-        [Required][Display(Name ="Sub Genre")]
-        public bool isSubGenre { get; set; }
 
     }
 }
