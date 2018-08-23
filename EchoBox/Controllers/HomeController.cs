@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EchoBox.Models;
 using SpotifyAPI.Web; //Base Namespace
 using SpotifyAPI.Web.Auth; //All Authentication-related classes
 using SpotifyAPI.Web.Enums; //Enums
@@ -14,7 +15,7 @@ namespace EchoBox.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View();   
         }
 
         public ActionResult About()
@@ -36,6 +37,14 @@ namespace EchoBox.Controllers
             ViewBag.Message = "Sign up here.";
             return View();
         }
+
+        public ActionResult Spotify()
+        {
+            ViewBag.Message = "Access Spotify's API Here.";
+            return View();
+        }
+        
+        
     }
 }
 //SpotifyAPI-NET URL: https://github.com/JohnnyCrazy/SpotifyAPI-NET
