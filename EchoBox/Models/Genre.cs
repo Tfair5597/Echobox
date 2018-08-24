@@ -31,31 +31,7 @@ namespace EchoBox.Models
 
 
 
-       public async void Test() //test authorization for spotify
-        {
-            var _spotify = new SpotifyWebAPI();
-
-            WebAPIFactory webAPIFactory = new WebAPIFactory(
-                "http://localhost",
-                8000,
-                "e81fba25bb5742d0a872e6813c55eb49",
-                Scope.UserReadPrivate,
-                TimeSpan.FromSeconds(20));
-
-            try
-            {
-                _spotify = await webAPIFactory.GetWebApi();
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            if (_spotify == null)
-            {
-                return;
-            }
-        }
+       
 
 
     }
