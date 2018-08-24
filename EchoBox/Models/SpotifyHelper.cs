@@ -22,7 +22,7 @@ namespace EchoBox.Models
        "spanish","study","summer","swedish","synth-pop","tango","techno","trance","trip-hop","turkish","work-out","world-music"};
 
 
-        public async void Test() //authorization for spotify
+        public static async void SpotAuth() //authorization for spotify
         {
             var _spotify = new SpotifyWebAPI();
 
@@ -39,7 +39,7 @@ namespace EchoBox.Models
             }
             catch (Exception ex)
             {
-
+                
             }
 
             if (_spotify == null)
