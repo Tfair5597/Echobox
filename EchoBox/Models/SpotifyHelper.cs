@@ -1,9 +1,11 @@
 ﻿using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
+using SpotifyAPI.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace EchoBox.Models
@@ -21,33 +23,92 @@ namespace EchoBox.Models
        "rock-n-roll","rockabilly","romance","sad","salsa","samba","sertanejo","show-tunes","singer-songwriter","ska","sleep","songwriter","soul","soundtracks",
        "spanish","study","summer","swedish","synth-pop","tango","techno","trance","trip-hop","turkish","work-out","world-music"};
 
-
-        public static async void SpotAuth() //authorization for spotify
+        public static async Task<string> GetGenre() //get first recommended genre
         {
-            var _spotify = new SpotifyWebAPI();
+            var genreGetter = new SpotifyWebAPI();
+            string GenreToReturn = "";
 
+
+            //implict grant auth 
             WebAPIFactory webAPIFactory = new WebAPIFactory(
-                "http://localhost",
-                8000,
-                "e81fba25bb5742d0a872e6813c55eb49",
-                Scope.UserReadPrivate,
-                TimeSpan.FromSeconds(20));
+               "http://localhost",
+               8000,
+               "e81fba25bb5742d0a872e6813c55eb49",
+               Scope.UserReadPrivate,
+               TimeSpan.FromSeconds(20));
 
             try
             {
-                _spotify = await webAPIFactory.GetWebApi();
+                genreGetter = await webAPIFactory.GetWebApi();
+
             }
             catch (Exception ex)
             {
-                
+
             }
 
-            if (_spotify == null)
+            if (genreGetter == null)
             {
-                return;
+                throw new NullReferenceException("Something went wrong... Sorry! Make sure you are authorized correctly.");
             }
+
+            Task<RecommendationSeedGenres> asyncronousGenre = genreGetter.GetRecommendationSeedsGenresAsync();
+            genreGetter.UseAuth = true;
+            string AccessTest = genreGetter.AccessToken;
+
+            RecommendationSeedGenres ReccoGenres = asyncronousGenre.Result;
+
+            string[] arrayOfGenres = new string[145];
+
+
+            arrayOfGenres = ReccoGenres.Genres.ToArray();
+            Random rand = new Random();
+            GenreToReturn = arrayOfGenres[rand.Next(146)];
+
+            return GenreToReturn;
         }
 
 
+        public static async Task<SearchItem> GrabArtists(string Search) //search for first 50 artists by name
+        {
+            var artistGetter = new SpotifyWebAPI();
+
+
+
+            //implict grant auth 
+            WebAPIFactory webAPIFactory = new WebAPIFactory(
+               "http://localhost",
+               8000,
+               "e81fba25bb5742d0a872e6813c55eb49",
+               Scope.UserReadPrivate,
+               TimeSpan.FromSeconds(20));
+
+            try
+            {
+                artistGetter = await webAPIFactory.GetWebApi();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString() + " this is what went wrong."); //display exception description.
+            }
+
+            if (Search != "" || Search != null)
+            {
+                SearchItem artistsToReturn = artistGetter.SearchItems(Search, SearchType.Artist, 50);
+
+
+                return artistsToReturn;
+
+            }
+            else
+            {
+                throw new Exception("Error-B182S4139GA921P - User failed to input a genre");
+            }
+        }
     }
 }
+//the URI issue is found here: https://github.com/JohnnyCrazy/SpotifyAPI-NET/issues/254 
+//to get started searching go here: https://johnnycrazy.github.io/SpotifyAPI-NET/SpotifyWebAPI/search/
+//to extract one object takes a lot of peeling back layers as seen in testAlbum
+//Try to do implicit grant auth in the method as opposed to make it's own method!

@@ -1,10 +1,34 @@
 ﻿@model EchoBox.Models.SpotifyHelper
 
+
 @{
-    ViewBag.Title = "Spotify";
+    ViewBag.Title = "Grab a random genre from Spotify."; <!--used to test grabbing data from spotify.-->
 }
 
-<h2>Login to Spotify</h2>
+<h2 style="color:chartreuse">~Test the API~</h2>
+
+<div>
+
+    <a href="#" onclick="location.href='@Url.Action("DisplayRandomGenre")'">Display a random genre.</a> <br />
+    <a href="#" onclick="location.href='@Url.Action("DisplayArtists")'">Display three artists</a> <br />
+    <p>@TempData["Genre"]</p><br /> <!-- test display of a genre.-->
+    <p>@TempData["ArtistList"]</p>
+
+</div>
+
+@using (Html.BeginForm("SpotifyArtistSearch", "Spotify"))
+{  //form to search by artist and genre.
+
+    <div class="form-horizontal">
+        <h4> Search Artist by genre </h4>
+        <hr />
+        <p>Search with a keyword: <input type="text" Name="Keyword" /> </p>
+        <p>Search Genre: <input type="text" Name="Genre" /> </p>
+        <input type="submit" name="Search" />
+    </div>
+}
 
 
-<a href="#" onclick="location.href='@Url.Action("AuthorizeSpotify")'">Connect</a>
+
+
+

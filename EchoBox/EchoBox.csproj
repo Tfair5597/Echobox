@@ -368,6 +368,7 @@
     <Content Include="Views\Genres\Index.cshtml" />
     <Content Include="Views\Home\Spotify.cshtml" />
     <Content Include="Views\Spotify\Spotify.cshtml" />
+    <Content Include="Views\Spotify\SpotifyArtistSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

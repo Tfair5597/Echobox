@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title style="color:chartreuse">@ViewBag.Title - The Echobox</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -23,8 +23,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Add New User","Index","Users")</li>
-                    <li>@Html.ActionLink("Connect to Spotify", "Spotify", "Spotify")</li>
+                    <li>@Html.ActionLink("Test Spotify API", "Spotify", "Spotify")</li>
                 </ul>
             </div>
         </div>

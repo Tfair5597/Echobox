@@ -1,0 +1,16 @@
+﻿@model EchoBox.Models.SpotifyHelper
+
+@{
+    ViewBag.Title = "SpotifyArtistSearch";
+}
+
+<h2>Artists listed by genre</h2> <br />
+
+<div class="form-row">
+    <ol>
+        @foreach (var artist in (string[])TempData["ArtistsByGenre"])
+        {
+            <li> @artist </li>
+        }
+    </ol>
+</div>
